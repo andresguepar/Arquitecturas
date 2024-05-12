@@ -1,10 +1,10 @@
-from multilevel.Student import Student
-from multilevel.StudentService import StudentService
+import Student
+import StudentService
 
 
 class Main:
     def __init__(self):
-        self.student_service = StudentService()
+        self.student_service = StudentService.StudentService()
 
     def main(self):
         while True:
@@ -16,7 +16,7 @@ class Main:
             if choice == "1":
                 name = input("Nombre del estudiante: ")
                 age = input("Edad del estudiante: ")
-                student = Student(name, age)
+                student = Student.Student(name, age)
                 self.student_service.add_student(student)
             elif choice == "2":
                 print("Lista de estudiantes:")

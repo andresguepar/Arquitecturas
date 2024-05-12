@@ -1,20 +1,20 @@
-from soa.FlightSearch import FlightSearch
-from soa.PaymentProcessing import PaymentProcessing
-from soa.SeatReservation import SeatReservation
+import FlightSearch
+import PaymentProcessing
+import SeatReservation
 
 
 class FlightBooking:
     def __init__(self):
-        self.search_service = FlightSearch()
-        self.seat_reservation_service = SeatReservation()
-        self.payment_service = PaymentProcessing()
+        self.search_service = FlightSearch.FlightSearch()
+        self.seat_reservation_service =SeatReservation.SeatReservation()
+        self.payment_service = PaymentProcessing.PaymentProcessing()
 
     def search(self, origin, destiny, date):
         return self.search_service.search_flights(origin, destiny, date)
 
     def book(self, flight_id, seat, amount):
         if self.seat_reservation_service.reserve_seat(flight_id, seat):
-            if self.payment_service.process_payment(amount):
+            if self.payment_service.payment_process(amount):
                 return True
             else:
                 print("Error al procesar el pago.")
